@@ -17,6 +17,9 @@ function addMessage() {
     if (nickName !== "") {
         localStorage.setItem('name', nickName);
     }
+    else {
+        nickName = "Аноним";
+    }
 
     let nickAvatar = document.querySelector(".picture").value;
     if (nickAvatar !== "") {
