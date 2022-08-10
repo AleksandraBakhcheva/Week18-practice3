@@ -5,6 +5,15 @@ container.innerHTML += `<div class="result"></div>
 <button type="submit">Отправить</button>`;
 document.body.append(container);
 
+document.addEventListener("DOMContentLoaded", function(event) {
+    let name = localStorage.getItem('name');
+    let avatar = localStorage.getItem('avatar');
+    if (name !== null || avatar !== null) {
+        document.querySelector(".nickname").value = name;
+        document.querySelector(".picture").value = avatar
+    }
+});
+
 let form = document.querySelector("form");
 form.addEventListener("submit", function(event) {
     event.preventDefault();
