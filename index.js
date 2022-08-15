@@ -8,9 +8,17 @@ document.body.append(container);
 document.addEventListener("DOMContentLoaded", function(event) {
     let name = localStorage.getItem('name');
     let avatar = localStorage.getItem('avatar');
-    if (name !== null || avatar !== null) {
+    let messages = JSON.parse(localStorage.getItem("message"));
+    if (name !== null || avatar !== null || message !== null) {
         document.querySelector(".nickname").value = name;
-        document.querySelector(".picture").value = avatar
+        document.querySelector(".picture").value = avatar;
+        for (let i = 0; i < messages.length; i++) {
+            let image = document.createElement("img");
+            image.classList.add("nickAvatar");
+            image.src = `${avatar}`;
+            document.querySelector(".result").appendChild(image);
+            document.querySelector(".result").innerHTML += name + ": " + messages[i] + "<br/>";
+        }
     }
 });
 
@@ -19,6 +27,8 @@ form.addEventListener("submit", function(event) {
     event.preventDefault();
     addMessage();
 });
+
+let messages = [];
 
 function addMessage() {
 
@@ -52,5 +62,7 @@ function addMessage() {
     function checkSpam(str) {
         let finalstr = str.replace(/viagra|XXX/gi, "***");
         document.querySelector(".result").innerHTML += nickName + ": " + finalstr + "<br/>";
+        messages.push(finalstr);
+        localStorage.setItem("message", JSON.stringify(messages));
     }
 }
