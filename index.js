@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     let name = localStorage.getItem('name');
     let avatar = localStorage.getItem('avatar');
     let messages = JSON.parse(localStorage.getItem("message"));
-    if (name !== null || avatar !== null || message !== null) {
+    if (name !== null || avatar !== null || messages !== null) {
         document.querySelector(".nickname").value = name;
         document.querySelector(".picture").value = avatar;
         for (let i = 0; i < messages.length; i++) {
