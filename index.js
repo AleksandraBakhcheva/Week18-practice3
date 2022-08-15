@@ -31,7 +31,6 @@ form.addEventListener("submit", function(event) {
 let messages = [];
 
 function addMessage() {
-
     let nickName = document.querySelector(".nickname").value;
     if (nickName !== "") {
         localStorage.setItem('name', nickName);
@@ -41,24 +40,21 @@ function addMessage() {
     }
 
     let nickAvatar = document.querySelector(".picture").value;
-    if (nickAvatar !== "") {
+    let message = document.querySelector(".messages").value;
+
+    if (nickAvatar !== "" && message !== "") {
         let image = document.createElement("img");
         image.classList.add("nickAvatar");
         image.src = `${nickAvatar}`;
         document.querySelector(".result").appendChild(image);
         localStorage.setItem('avatar', nickAvatar);
     }
-
-    let message = document.querySelector(".messages").value;
     
     if (message !== "") {
         checkSpam(message);
         document.querySelector(".messages").value = "";
     }
-    else {
-        return 0;
-    }
-
+    
     function checkSpam(str) {
         let finalstr = str.replace(/viagra|XXX/gi, "***");
         document.querySelector(".result").innerHTML += nickName + ": " + finalstr + "<br/>";
