@@ -5,10 +5,12 @@ container.innerHTML += `<div class="result"></div>
 <button type="submit">Отправить</button>`;
 document.body.append(container);
 
+let messages = [];
+
 document.addEventListener("DOMContentLoaded", function(event) {
     let name = localStorage.getItem('name');
     let avatar = localStorage.getItem('avatar');
-    let messages = JSON.parse(localStorage.getItem("message"));
+    messages = JSON.parse(localStorage.getItem("message"));
     if (name !== null || avatar !== null || messages !== null) {
         document.querySelector(".nickname").value = name;
         document.querySelector(".picture").value = avatar;
@@ -27,8 +29,6 @@ form.addEventListener("submit", function(event) {
     event.preventDefault();
     addMessage();
 });
-
-let messages = [];
 
 function addMessage() {
     let nickName = document.querySelector(".nickname").value;
