@@ -5,13 +5,11 @@ container.innerHTML += `<div class="result"></div>
 <button type="submit">Отправить</button>`;
 document.body.append(container);
 
-let messages = [];
-
 document.addEventListener("DOMContentLoaded", function(event) {
     let name = localStorage.getItem('name');
     let avatar = localStorage.getItem('avatar');
     messages = JSON.parse(localStorage.getItem("message"));
-    if (name !== null || avatar !== null || messages !== null) {
+    if (name !== null && avatar !== null && messages !== null) {
         document.querySelector(".nickname").value = name;
         document.querySelector(".picture").value = avatar;
         for (let i = 0; i < messages.length; i++) {
@@ -29,6 +27,8 @@ form.addEventListener("submit", function(event) {
     event.preventDefault();
     addMessage();
 });
+
+let messages = [];
 
 function addMessage() {
     let nickName = document.querySelector(".nickname").value;
@@ -54,7 +54,7 @@ function addMessage() {
         checkSpam(message);
         document.querySelector(".messages").value = "";
     }
-    
+
     function checkSpam(str) {
         let finalstr = str.replace(/viagra|XXX/gi, "***");
         document.querySelector(".result").innerHTML += nickName + ": " + finalstr + "<br/>";
