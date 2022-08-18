@@ -59,7 +59,6 @@ function addMessage() {
         let finalstr = str.replace(/viagra|XXX/gi, "***");
         document.querySelector(".result").innerHTML += nickName + ": " + finalstr + "<br/>";
         messages.push(finalstr);
-        console.log(messages);
         localStorage.setItem("message", JSON.stringify(messages));
     }
 }
